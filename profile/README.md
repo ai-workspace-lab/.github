@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../assets/xworkmate-poster.png" alt="XWorkmate poster" width="100%" />
+  <img src="../assets/ai-workspace-ecosystem-poster.jpg" alt="XWorkmate poster" width="100%" />
 </p>
 
 <h1 align="center">ai-workspace-lab</h1>

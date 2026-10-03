@@ -4,11 +4,17 @@ AI 工作区产品与 Agent Runtime 实验室 | AI Workspace Product & Agent Run
 
 🇨🇳 简体中文 ｜ [🌐 English Version](#english)
 
+<p align="center">
+  <img src="../assets/ai-workspace-lab-hero.png" alt="XWorkmate, xworkmate-app and ai-xworkspace connecting Chat, Work, Coding and AutoBot" width="100%" />
+</p>
+
 ---
 
 ## <a id="中文"></a>🇨🇳 组织概览
 
 `ai-workspace-lab` 是 AI Workspace 的产品与运行时工程组织。我们把对话、任务、工具、执行过程和最终产物连接在同一个工作区里，让 AI 协作从一次性问答变成可持续推进、可验证交付的工作流。
+
+产品主轴围绕 `xworkmate-app` 与 `ai-xworkspace` 展开，把 **Chat、Work、Coding、AutoBot** 汇聚到同一个可持续推进的工作区。
 
 ### 我们的使命与交付准则
 
@@ -23,14 +29,6 @@ AI 工作区产品与 Agent Runtime 实验室 | AI Workspace Product & Agent Run
 - 产品主页：[XWorkmate](https://console.svc.plus/products/xworkmate)
 - 组织主页：[GitHub - ai-workspace-lab](https://github.com/ai-workspace-lab)
 - 工作区控制面：[XLaunch / XWorkspace Console](https://github.com/ai-workspace-lab/xworkspace-console)
-- 快速安装 XWorkmate App：
-  ```bash
-  curl -sfL https://install.svc.plus/xworkmate-app | bash -
-  ```
-- 快速安装 AI Workspace Suite：
-  ```bash
-  curl -sfL https://raw.githubusercontent.com/ai-workspace-lab/XLaunch/main/scripts/setup-ai-workspace-all-in-one.sh | bash -
-  ```
 
 ---
 
@@ -136,6 +134,24 @@ flowchart LR
 ### Repository map
 
 The repository matrix above is the current map of the product, runtime, memory, gateway, database, and documentation layers. Start with `xworkmate-app` for the client, `xworkmate-bridge` for execution transport, `xworkspace-console` for the control plane, and `xworkspace-core-skills` for reusable workflows.
+
+---
+
+## 🚀 快速开始 (Quick Start)
+
+### 快速安装 `xworkmate-app`
+
+```bash
+curl -sfL https://install.svc.plus/xworkmate-app | bash -
+```
+
+### 快速安装 `setup-ai-workspace-all-in-one.sh`
+
+```bash
+curl -sfL https://raw.githubusercontent.com/ai-workspace-lab/XLaunch/main/scripts/setup-ai-workspace-all-in-one.sh | bash -
+```
+
+> `setup-ai-workspace-all-in-one.sh` 当前仍从 `XLaunch` 发布；`ai-workspace-lab/ai-workspace` 仓库尚未创建，待仓库建立后再切换为新的 raw 地址。
 
 ---
 

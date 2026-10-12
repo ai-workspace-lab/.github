@@ -81,6 +81,22 @@ flowchart LR
 
 ---
 
+## 🧭 AI Workspace 架构目标设计图 (Target Architecture)
+
+下图保留 v2 的总体分层，并展示 v2.1 对 Bridge、DS Bot + DSH 编排、执行器调用、后台任务持久状态和远程人工接管的目标职责与关系。**虚线表示目标关系或尚待验收的能力；图中的设计不代表所有组件已完成部署或端到端验收。** Home-Lab 是参考实例，Mac 也可独立运行。
+
+<p align="center">
+  <img src="assets/ai-workspace-v2-1-target-architecture.png" alt="AI Workspace v2.1 target architecture: Bridge event relay, DS Bot and DSH orchestration, agent executors, durable task state, shared memory, model gateway, and WebRTC human takeover" width="100%" />
+</p>
+
+可编辑矢量源文件：[SVG](assets/ai-workspace-v2-1-target-architecture.svg)。
+
+The diagram preserves the v2 layers and shows the v2.1 target responsibilities and relationships for Bridge, DS Bot + DSH orchestration, executor calls, durable background task state, and remote human takeover. **Dashed lines mark target relationships or capabilities awaiting acceptance; the design does not imply that every component is deployed or end-to-end verified.** Home-Lab is a reference instance; a Mac can also run independently.
+
+Editable vector source: [SVG](assets/ai-workspace-v2-1-target-architecture.svg).
+
+---
+
 ## 📦 核心仓库矩阵 (Core Repository Matrix)
 
 | 仓库 (Repository) | 类型 / 定位 | 说明 / Function |

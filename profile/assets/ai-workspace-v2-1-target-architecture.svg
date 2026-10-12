@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1480" viewBox="0 0 2400 1480" role="img" aria-labelledby="title desc">
+  <title id="title">AI Workspace 总体分层架构 v2.1</title>
+  <desc id="desc">保留 v2 总体分层，调整 Bridge、DSH 与 DS Bot 职责，加入后台任务持久状态、WebRTC 人工接管，并按当前配置证据更新端口与存储标注。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#526174"/></marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#3568b8"/></marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#8151a3"/></marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#21899b"/></marker>
+    <marker id="arrowStart" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10 0 L0 5 L10 10 Z" fill="#526174"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #202733; }
+      .title { font-size: 36px; font-weight: 700; }
+      .subtitle { font-size: 19px; fill: #536172; }
+      .zoneTitle { font-size: 24px; font-weight: 700; }
+      .cardTitle { font-size: 24px; font-weight: 700; }
+      .body { font-size: 19px; }
+      .small { font-size: 16px; fill: #475569; }
+      .tiny { font-size: 14px; fill: #475569; }
+      .label { font-size: 16px; font-weight: 600; fill: #435166; }
+      .status { font-size: 15px; font-weight: 600; }
+      .solid { fill: none; stroke: #526174; stroke-width: 2.2; marker-end: url(#arrow); }
+      .blue { fill: none; stroke: #3568b8; stroke-width: 2.6; marker-end: url(#arrowBlue); }
+      .purple { fill: none; stroke: #8151a3; stroke-width: 2.5; marker-end: url(#arrowPurple); }
+      .teal { fill: none; stroke: #21899b; stroke-width: 2.5; marker-end: url(#arrowTeal); }
+      .dashed { stroke-dasharray: 8 7; }
+    </style>
+  </defs>
+
+  <rect width="2400" height="1480" fill="#f7f8fb"/>
+  <text class="title" x="1200" y="48" text-anchor="middle">AI Workspace 总体分层架构（目标态 · v2.1）</text>
+  <text class="subtitle" x="1200" y="82" text-anchor="middle">保留 v2 分层；更新职责归属、调用方向、持久状态与远程人工接管</text>
+
+  <!-- Main execution boundary -->
+  <rect x="450" y="130" width="1600" height="1090" rx="26" fill="#f2f4f7" stroke="#8792a0" stroke-width="2"/>
+  <text class="zoneTitle" x="490" y="174">② 执行与控制运行域（组件可部署在 Mac 或 Home-Lab）</text>
+  <rect x="1595" y="143" width="210" height="38" rx="19" fill="#e6f2e8" stroke="#70a77b"/>
+  <text class="small" x="1700" y="168" text-anchor="middle" font-weight="700">Mac 单机可独立运行</text>
+  <rect x="1818" y="143" width="190" height="38" rx="19" fill="#fff2d9" stroke="#d4a85b"/>
+  <text class="small" x="1913" y="168" text-anchor="middle" font-weight="700">Home-Lab 参考实例</text>
+
+  <!-- Connectors behind the nodes -->
+  <path d="M400 310 C500 310 555 285 650 285" class="blue"/>
+  <text class="label" x="515" y="274" text-anchor="middle">任务请求 / 状态查询</text>
+
+  <path d="M400 205 C445 145 500 110 610 110 L1480 110 C1520 110 1535 153 1555 230" fill="none" stroke="#8151a3" stroke-width="2.2" stroke-dasharray="8 7" marker-end="url(#arrowPurple)"/>
+  <rect x="835" y="98" width="330" height="30" rx="15" fill="#f7f8fb"/>
+  <text class="label" x="1000" y="119" text-anchor="middle" fill="#8151a3">WebRTC：视频下行 ↔ 输入上行</text>
+
+  <path d="M1055 352 L1055 410" fill="none" stroke="#526174" stroke-width="2.4" stroke-dasharray="8 7" marker-start="url(#arrowStart)" marker-end="url(#arrow)"/>
+  <rect x="1070" y="365" width="215" height="26" rx="13" fill="#f2f4f7"/>
+  <text class="label" x="1177" y="384" text-anchor="middle">连接 / 事件转发</text>
+
+  <path d="M1460 286 C1495 286 1510 286 1548 286" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <text class="tiny" x="1504" y="271" text-anchor="middle">信令</text>
+
+  <path d="M1460 505 C1505 486 1520 425 1548 378" class="teal dashed"/>
+
+  <!-- Executor dispatch bus -->
+  <path d="M1055 600 L1055 625" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7"/>
+  <path d="M675 625 L1842 625" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7"/>
+  <path d="M675 625 L675 650" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <path d="M1064 625 L1064 650" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <path d="M1453 625 L1453 650" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <path d="M1842 625 L1842 650" fill="none" stroke="#526174" stroke-width="2.2" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <rect x="958" y="608" width="194" height="28" rx="14" fill="#f2f4f7"/>
+  <text class="label" x="1055" y="628" text-anchor="middle">目标执行器调用</text>
+
+  <!-- Model gateway and shared memory connectors -->
+  <path d="M650 500 L470 500 L470 1045 L495 1045" class="purple"/>
+  <path d="M1460 525 L2034 525 L2034 952 L2020 952" class="teal dashed"/>
+  <rect x="1650" y="509" width="180" height="28" rx="14" fill="#f2f4f7"/>
+  <text class="label" x="1740" y="529" text-anchor="middle" fill="#21899b">共享记忆 MCP</text>
+
+  <!-- Durable task state path: Bridge -> Accounts -->
+  <path d="M1460 335 C1500 365 1510 420 1540 420 L2070 420 L2070 660 L2100 660" fill="none" stroke="#526174" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <rect x="1692" y="402" width="260" height="28" rx="14" fill="#f2f4f7"/>
+  <text class="label" x="1822" y="422" text-anchor="middle">任务状态 / 有序事件</text>
+
+  <!-- Google Drive archive path -->
+  <path d="M2020 1090 L2076 1045 L2076 925 L2100 925" fill="none" stroke="#9a7b35" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+
+  <!-- Upstream model connection -->
+  <path d="M860 1160 L860 1280" class="purple"/>
+
+  <!-- Endpoint layer -->
+  <rect x="40" y="185" width="360" height="270" rx="22" fill="#e7efff" stroke="#6e93d1" stroke-width="2"/>
+  <text class="zoneTitle" x="220" y="222" text-anchor="middle">① 终端设备</text>
+  <text class="small" x="220" y="250" text-anchor="middle">Mac / iOS / Android / Web</text>
+  <rect x="68" y="270" width="304" height="126" rx="16" fill="#d6e4ff" stroke="#6689c6" stroke-width="1.7"/>
+  <text class="cardTitle" x="220" y="302" text-anchor="middle">xworkmate-app</text>
+  <text class="body" x="220" y="333" text-anchor="middle">Flutter · Chat / Work / Code / Bot</text>
+  <text class="small" x="220" y="361" text-anchor="middle">任务状态、审批与结果查看</text>
+  <text class="tiny" x="220" y="428" text-anchor="middle">CLI 工具归入执行层；App 不承担编排</text>
+
+  <!-- Bridge -->
+  <rect x="650" y="220" width="810" height="132" rx="20" fill="#ffe7c6" stroke="#d59a48" stroke-width="2"/>
+  <text class="cardTitle" x="1055" y="255" text-anchor="middle">xworkmate-bridge · 连接与事件转发层</text>
+  <text class="body" x="1055" y="286" text-anchor="middle">鉴权 · 协议适配 · 请求转发 · 事件与状态转发</text>
+  <text class="small" x="1055" y="316" text-anchor="middle">监听 127.0.0.1:8787（默认配置） · 不做角色选择或任务编排</text>
+  <rect x="825" y="325" width="460" height="24" rx="12" fill="#fff5e8"/>
+  <text class="tiny" x="1055" y="342" text-anchor="middle">PR #29 已合并 · 当前仍走 Gateway；转 DSH 路径待验收</text>
+
+  <!-- WebRTC and human takeover -->
+  <rect x="1548" y="218" width="450" height="175" rx="20" fill="#e8f5f7" stroke="#4eabb8" stroke-width="2"/>
+  <text class="cardTitle" x="1773" y="252" text-anchor="middle">远程桌面 · WebRTC 交互</text>
+  <text class="body" x="1773" y="283" text-anchor="middle">屏幕视频流 → App · 键鼠输入 ← App</text>
+  <text class="small" x="1773" y="313" text-anchor="middle">人工接管：暂停自动操作 → 用户控制</text>
+  <text class="small" x="1773" y="340" text-anchor="middle">操作完成后由 App / Bridge 恢复或结束任务</text>
+  <rect x="1638" y="353" width="270" height="26" rx="13" fill="#fff3d9" stroke="#ddb865"/>
+  <text class="status" x="1773" y="371" text-anchor="middle" fill="#795b19">目标交互通道 · 需单独验收</text>
+
+  <!-- DSH + DS Bot orchestration -->
+  <rect x="650" y="410" width="810" height="190" rx="20" fill="#ffe6bd" stroke="#d59a48" stroke-width="2.4"/>
+  <text class="cardTitle" x="1055" y="447" text-anchor="middle">DS Bot + DSH · 角色选择与任务编排层</text>
+  <text class="body" x="1055" y="480" text-anchor="middle">选择角色 · 拆解与调度任务 · 管理后台运行与人工介入状态</text>
+  <text class="small" x="1055" y="513" text-anchor="middle">DSH 为编排核心；按任务启动 stdio worker，无固定监听端口</text>
+  <rect x="792" y="542" width="526" height="36" rx="18" fill="#fff5e8" stroke="#e3b86c"/>
+  <text class="status" x="1055" y="566" text-anchor="middle" fill="#78551d">Workers role 已合并 · DSH + DS Bot 新编排层尚未验收</text>
+
+  <!-- Executors -->
+  <text class="zoneTitle" x="1260" y="667" text-anchor="middle">执行器（由 DSH 调用）</text>
+  <rect x="495" y="650" width="360" height="210" rx="18" fill="#e6f4e8" stroke="#79ad82" stroke-width="2"/>
+  <text class="cardTitle" x="675" y="690" text-anchor="middle">OpenCode v2</text>
+  <text class="body" x="675" y="721" text-anchor="middle">认证 loopback API · 默认 4097</text>
+  <text class="small" x="675" y="753" text-anchor="middle">Home-Lab worker 已部署 / readiness 通过</text>
+  <rect x="518" y="777" width="314" height="54" rx="12" fill="#fff2d9" stroke="#d9b45e"/>
+  <text class="status" x="675" y="800" text-anchor="middle" fill="#795b19">真实 prompt 被额度拒绝</text>
+  <text class="tiny" x="675" y="820" text-anchor="middle">未验 DSH 调用 / diff / test</text>
+
+  <rect x="884" y="650" width="360" height="210" rx="18" fill="#f1f4f8" stroke="#9aa5b2" stroke-width="2"/>
+  <text class="cardTitle" x="1064" y="690" text-anchor="middle">Codex CLI</text>
+  <text class="body" x="1064" y="723" text-anchor="middle">CLI 子进程 · 无固定服务端口</text>
+  <rect x="922" y="766" width="284" height="45" rx="22" fill="#f7f8fb" stroke="#adb7c3" stroke-dasharray="6 5"/>
+  <text class="status" x="1064" y="794" text-anchor="middle" fill="#586575">目标接入 · 尚无验收证据</text>
+
+  <rect x="1273" y="650" width="360" height="210" rx="18" fill="#f1f4f8" stroke="#9aa5b2" stroke-width="2"/>
+  <text class="cardTitle" x="1453" y="690" text-anchor="middle">Claude Code CLI</text>
+  <text class="body" x="1453" y="723" text-anchor="middle">CLI 子进程 · 无固定服务端口</text>
+  <rect x="1311" y="766" width="284" height="45" rx="22" fill="#f7f8fb" stroke="#adb7c3" stroke-dasharray="6 5"/>
+  <text class="status" x="1453" y="794" text-anchor="middle" fill="#586575">目标接入 · 尚无验收证据</text>
+
+  <rect x="1662" y="650" width="360" height="210" rx="18" fill="#f1f4f8" stroke="#9aa5b2" stroke-width="2"/>
+  <text class="cardTitle" x="1842" y="690" text-anchor="middle">Grok Build CLI</text>
+  <text class="body" x="1842" y="723" text-anchor="middle">CLI 子进程 · 无固定服务端口</text>
+  <rect x="1700" y="766" width="284" height="45" rx="22" fill="#f7f8fb" stroke="#adb7c3" stroke-dasharray="6 5"/>
+  <text class="status" x="1842" y="794" text-anchor="middle" fill="#586575">目标接入 · 尚无验收证据</text>
+
+  <!-- Model gateway -->
+  <rect x="495" y="930" width="735" height="230" rx="20" fill="#f1e5f5" stroke="#a16db5" stroke-width="2"/>
+  <text class="cardTitle" x="862" y="971" text-anchor="middle">统一模型网关 · AI Aggregator</text>
+  <text class="body" x="862" y="1005" text-anchor="middle">Home-Lab 已记录路径：Caddy TLS → New API :3000</text>
+  <text class="small" x="862" y="1037" text-anchor="middle">New API 统一鉴权与额度；CPA 等渠道按运行配置接入</text>
+  <text class="small" x="862" y="1065" text-anchor="middle">APISIX :9080 为可选路径，10/03 不是当前 Caddy 路径</text>
+  <text class="tiny" x="862" y="1110" text-anchor="middle">模型调用统一经网关；密钥由运行时引用</text>
+
+  <!-- Shared memory -->
+  <rect x="1260" y="930" width="760" height="230" rx="20" fill="#dff4f7" stroke="#55adba" stroke-width="2"/>
+  <text class="cardTitle" x="1640" y="971" text-anchor="middle">共享记忆 · QMD MCP :8181</text>
+  <text class="body" x="1640" y="1005" text-anchor="middle">默认索引：SQLite · ~/.cache/qmd/index.sqlite</text>
+  <text class="small" x="1640" y="1037" text-anchor="middle">可选 PostgreSQL：显式 QMD_BACKEND=pg</text>
+  <text class="small" x="1640" y="1065" text-anchor="middle">版本与向量维度依运行配置；图中不固定 PG18 / 2048</text>
+  <text class="tiny" x="1640" y="1110" text-anchor="middle">DSH 与所有执行器共享；与 Accounts 任务状态库分开</text>
+
+  <!-- Durable state and archive -->
+  <rect x="2100" y="575" width="270" height="190" rx="20" fill="#fff0d2" stroke="#c69e53" stroke-width="2"/>
+  <text class="cardTitle" x="2235" y="615" text-anchor="middle">Accounts</text>
+  <text class="body" x="2235" y="648" text-anchor="middle">后台任务持久状态</text>
+  <text class="small" x="2235" y="678" text-anchor="middle">namespace / session / events</text>
+  <text class="small" x="2235" y="705" text-anchor="middle">taskRun / scheduler leases</text>
+  <text class="tiny" x="2235" y="740" text-anchor="middle">唯一跨设备真源；Bridge 只转发</text>
+
+  <rect x="2100" y="825" width="270" height="150" rx="18" fill="#fff8e8" stroke="#b8a16d" stroke-width="2" stroke-dasharray="7 5"/>
+  <text class="cardTitle" x="2235" y="864" text-anchor="middle">Google Drive 归档</text>
+  <text class="small" x="2235" y="895" text-anchor="middle">Grok Bot raw / year / month</text>
+  <text class="small" x="2235" y="922" text-anchor="middle">追加归档 · 条件性通道</text>
+  <text class="tiny" x="2235" y="950" text-anchor="middle">不作为任务状态或共享记忆真源</text>
+
+  <!-- Upstream model providers -->
+  <rect x="790" y="1280" width="700" height="112" rx="20" fill="#fff" stroke="#6b7280" stroke-width="1.8"/>
+  <text class="cardTitle" x="1140" y="1321" text-anchor="middle">上游模型服务</text>
+  <text class="body" x="1140" y="1355" text-anchor="middle">OpenAI / Anthropic / xAI · NVIDIA NIM · Ollama Cloud</text>
+
+  <!-- Legend and evidence scope -->
+  <line x1="40" y1="1430" x2="120" y2="1430" stroke="#526174" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <text class="tiny" x="132" y="1435">实线：已有合同 / 配置 / 范围证据</text>
+  <line x1="390" y1="1430" x2="470" y2="1430" stroke="#8151a3" stroke-width="2.4" stroke-dasharray="8 7" marker-end="url(#arrowPurple)"/>
+  <text class="tiny" x="482" y="1435">虚线：目标关系、可选或待验收</text>
+  <text class="tiny" x="2390" y="1435" text-anchor="end">PR 状态核对：2026-10-13 · Home-Lab 运行验收：2026-10-03 · 配置/存储：2026-10-12 本地文档</text>
+</svg>

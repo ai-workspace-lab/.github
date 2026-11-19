@@ -123,6 +123,7 @@ Editable vector source: [SVG](assets/ai-workspace-v2-1-target-architecture.svg).
 | [`dsh-connectors`](https://github.com/ai-workspace-lab/dsh-connectors) | `DSH Connectors` | 原生 Connectors 控制中心插件，提供 App-Store 风格设置面板、DSH Credential Store 凭据隔离、GitHub OIDC / Device Flow / CLI SSO 与自定义远程 MCP 桥接。 |
 | [`ds-harness-remote`](https://github.com/ai-workspace-lab/ds-harness-remote) | `DSH Remote` | 基于 DeepSeek Harness 插件机制的端到端加密 P2P 远程访问方案，支持 PC、移动端与 Web 低延迟访问本地 DSH、Codex、Cursor、Claude Code 等工作区。 |
 | [`dsh-subagent-antigravity`](https://github.com/ai-workspace-lab/dsh-subagent-antigravity) | `DSH Subagent` | Google Antigravity CLI (`agy`) Subagent Provider 插件，支持在父工作区中以无头模式调度一次性 `agy` 任务会话。 |
+| [`dsh-nvidia-cloud-provider`](https://github.com/ai-workspace-lab/dsh-nvidia-cloud-provider) | `DSH Provider` | NVIDIA NIM 云端模型 Provider 插件，注册 `nvidia-nim` 路由，支持自动模型发现、多账号轮询冷却与免重启凭据管理。 |
 
 ### 生态与实验仓库 (Ecosystem & Experiments)
 
@@ -159,7 +160,7 @@ Editable vector source: [SVG](assets/ai-workspace-v2-1-target-architecture.svg).
 
 ### Repository map
 
-The repository matrix above is the current map of the product, runtime, memory, gateway, database, and documentation layers. Start with `xworkmate-app` for the client, `xworkmate-bridge` for execution transport, `xworkspace-console` for the control plane, and `xworkspace-core-skills` for reusable workflows. For customized **DeepSeek Harness (`dsh`)** extensions, see [`dsh-connectors`](https://github.com/ai-workspace-lab/dsh-connectors) (native Connectors & MCP control center), [`ds-harness-remote`](https://github.com/ai-workspace-lab/ds-harness-remote) (E2E-encrypted P2P remote workspace access), and [`dsh-subagent-antigravity`](https://github.com/ai-workspace-lab/dsh-subagent-antigravity) (Google Antigravity CLI subagent provider).
+The repository matrix above is the current map of the product, runtime, memory, gateway, database, and documentation layers. Start with `xworkmate-app` for the client, `xworkmate-bridge` for execution transport, `xworkspace-console` for the control plane, and `xworkspace-core-skills` for reusable workflows. For customized **DeepSeek Harness (`dsh`)** extensions, see [`dsh-connectors`](https://github.com/ai-workspace-lab/dsh-connectors) (native Connectors & MCP control center), [`ds-harness-remote`](https://github.com/ai-workspace-lab/ds-harness-remote) (E2E-encrypted P2P remote workspace access), [`dsh-subagent-antigravity`](https://github.com/ai-workspace-lab/dsh-subagent-antigravity) (Google Antigravity CLI subagent provider), and [`dsh-nvidia-cloud-provider`](https://github.com/ai-workspace-lab/dsh-nvidia-cloud-provider) (NVIDIA NIM cloud provider).
 
 ---
 

@@ -114,6 +114,16 @@ Editable vector source: [SVG](assets/ai-workspace-v2-1-target-architecture.svg).
 | [`postgresql.svc.plus`](https://github.com/ai-workspace-lab/postgresql.svc.plus) | `Database & Vector` | PostgreSQL、pgvector、中文分词和安全连接底座。 |
 | [`docs`](https://github.com/ai-workspace-lab/docs) | `Architecture & Delivery` | 架构、产品、交付和运行手册。 |
 
+### 🔌 DeepSeek Harness 定制插件 (DeepSeek Harness Plugins)
+
+围绕 **DeepSeek Harness (`dsh`)** 魔改定制的插件与远程访问生态：
+
+| 插件仓库 (Plugin) | 类型 / 定位 | 说明 / Function |
+| --- | --- | --- |
+| [`dsh-connectors`](https://github.com/ai-workspace-lab/dsh-connectors) | `DSH Connectors` | 原生 Connectors 控制中心插件，提供 App-Store 风格设置面板、DSH Credential Store 凭据隔离、GitHub OIDC / Device Flow / CLI SSO 与自定义远程 MCP 桥接。 |
+| [`ds-harness-remote`](https://github.com/ai-workspace-lab/ds-harness-remote) | `DSH Remote` | 基于 DeepSeek Harness 插件机制的端到端加密 P2P 远程访问方案，支持 PC、移动端与 Web 低延迟访问本地 DSH、Codex、Cursor、Claude Code 等工作区。 |
+| [`dsh-subagent-antigravity`](https://github.com/ai-workspace-lab/dsh-subagent-antigravity) | `DSH Subagent` | Google Antigravity CLI (`agy`) Subagent Provider 插件，支持在父工作区中以无头模式调度一次性 `agy` 任务会话。 |
+
 ### 生态与实验仓库 (Ecosystem & Experiments)
 
 - [`new-api`](https://github.com/ai-workspace-lab/new-api)：模型聚合、访问控制与 API 管理实验。
@@ -149,7 +159,7 @@ Editable vector source: [SVG](assets/ai-workspace-v2-1-target-architecture.svg).
 
 ### Repository map
 
-The repository matrix above is the current map of the product, runtime, memory, gateway, database, and documentation layers. Start with `xworkmate-app` for the client, `xworkmate-bridge` for execution transport, `xworkspace-console` for the control plane, and `xworkspace-core-skills` for reusable workflows.
+The repository matrix above is the current map of the product, runtime, memory, gateway, database, and documentation layers. Start with `xworkmate-app` for the client, `xworkmate-bridge` for execution transport, `xworkspace-console` for the control plane, and `xworkspace-core-skills` for reusable workflows. For customized **DeepSeek Harness (`dsh`)** extensions, see [`dsh-connectors`](https://github.com/ai-workspace-lab/dsh-connectors) (native Connectors & MCP control center), [`ds-harness-remote`](https://github.com/ai-workspace-lab/ds-harness-remote) (E2E-encrypted P2P remote workspace access), and [`dsh-subagent-antigravity`](https://github.com/ai-workspace-lab/dsh-subagent-antigravity) (Google Antigravity CLI subagent provider).
 
 ---
 
